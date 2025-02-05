@@ -1,0 +1,1 @@
+ C:\\Users\\samia\\OneDrive\\Documentos\\IFPI_ADS\\2024.2\\Prog\ Disp\ Mov\\projeto_final_allerfree\\.dart_tool\\flutter_build\\12f1f49977cfd45ff2372e51bbdd2238\\native_assets.yaml: 
