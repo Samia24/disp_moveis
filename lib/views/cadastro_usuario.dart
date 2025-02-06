@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_final_allerfree/controllers/cadastro_controllers.dart';
 
 class CadastroUsuario extends StatefulWidget {
   const CadastroUsuario({super.key});
@@ -10,6 +11,15 @@ class CadastroUsuario extends StatefulWidget {
 bool usuarioAtivado = true; // true para pessoa, false para loja
 
 class _CadastroUsuarioState extends State<CadastroUsuario> {
+  
+  final CadastroController _controller = CadastroController();
+
+  void _finalizarCadastro () async {
+    await _controller.cadastrarUsuario(context);
+    Navigator.pushNamed(context, '/login');
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -113,27 +123,33 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
         child: Column(
           children: [
             TextFormField(
+              controller: _controller.nomeController,
               decoration: _inputDecoration(
                   "Nome completo", "Informe seu nome completo"),
             ),
             const SizedBox(height: 10),
             usuarioAtivado
                 ? TextFormField(
+                    controller: _controller.documentoController,
                     decoration: _inputDecoration("CPF", "xxx.xxx.xxx-xx"),
                   )
                 : TextFormField(
+                    controller: _controller.documentoController,
                     decoration: _inputDecoration("CNPJ", "xx.xxx.xxx/xxxx-xx"),
                   ),
             const SizedBox(height: 10),
             TextFormField(
+              controller: _controller.telefoneController,
               decoration: _inputDecoration("Telefone", "(xx) x xxxx-xxxx"),
             ),
             const SizedBox(height: 10),
             TextFormField(
+              controller: _controller.emailController,
               decoration: _inputDecoration("E-mail", "email@gmail.com"),
             ),
             const SizedBox(height: 10),
             TextFormField(
+              controller: _controller.senhaController,
               decoration: _inputDecoration("Senha", "Senha de 4 dígitos"),
             ),
           ],
@@ -149,37 +165,43 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
         child: Column(
           children: [
             TextFormField(
+              controller: _controller.enderecoController,
               decoration: _inputDecoration("Endereço", "Informe seu endereço"),
             ),
             const SizedBox(height: 10),
             TextFormField(
+              controller: _controller.bairroController,
               decoration: _inputDecoration("Bairro", "Informe seu bairro"),
             ),
             const SizedBox(height: 10),
             TextFormField(
-              decoration:
-                  _inputDecoration("Complemento", "Informe o complemento"),
+              controller: _controller.complementoController,
+              decoration: _inputDecoration("Complemento", "Informe o complemento"),
             ),
             const SizedBox(height: 10),
             TextFormField(
+              controller: _controller.cepController,
               decoration: _inputDecoration("CEP", "xxxxx-xxx"),
             ),
             const SizedBox(height: 10),
             TextFormField(
+              controller: _controller.cidadeController,
               decoration: _inputDecoration("Cidade", "Informe sua cidade"),
             ),
             const SizedBox(height: 10),
             TextFormField(
-              decoration:
-                  _inputDecoration("Estado", "Informe a sigla do seu estado"),
+              controller: _controller.estadoController,
+              decoration: _inputDecoration("Estado", "Informe a sigla do seu estado"),
             ),
             const SizedBox(height: 10),
             TextFormField(
+              controller: _controller.latitudeController,
               decoration: _inputDecoration(
                   "Latitude", "Informe a latitude de sua loja"),
             ),
             const SizedBox(height: 10),
             TextFormField(
+              controller: _controller.longitudeController,
               decoration: _inputDecoration(
                   "Longitude", "Informe a longitude de sua loja"),
             ),
@@ -223,7 +245,7 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: _finalizarCadastro,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
@@ -267,7 +289,7 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: _finalizarCadastro,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
                   foregroundColor: Colors.white,

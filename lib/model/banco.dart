@@ -6,8 +6,7 @@ class Banco {
 
   Future<void> salvarContato(
       String nome,
-      String cpf,
-      String cnpj,
+      String documento,
       String telefone,
       String email,
       String senha,
@@ -22,7 +21,7 @@ class Banco {
     try {
       await bancoCollection.add({
         'nome': nome,
-        'documento': (cpf != Null) ? cpf : cnpj,
+        'documento': documento,
         'telefone': telefone,
         'email': email,
         'senha': senha,
