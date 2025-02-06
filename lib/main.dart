@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'views/login.dart';
 import 'views/cadastro_usuario.dart';
+import 'views/mapas.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         //'/home': (context) => const Home(),
         '/login': (context) => const Login(),
         '/cadastro': (context) => const CadastroUsuario(),
-       // '/mapas': (context) => const Mapas(),
+        '/mapas': (context) => const MyHomePage(title: 'Mapas'),
       },
     );
   }
