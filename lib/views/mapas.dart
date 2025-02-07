@@ -4,7 +4,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -21,18 +20,16 @@ class _MyHomePageState extends State<MyHomePage> {
   Position? _localizacao;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   List<Map<String, dynamic>> _contatos = [];
-  
 
   @override
   void initState() {
     super.initState();
     _obterLocalizacaoAtual();
-    //_buscarContatos(); // Busca os contatos ao iniciar a tela
+    _buscarContatos();
   }
 
   Future<void> _obterLocalizacaoAtual() async {
     try {
-
       LocationPermission permissao = await Geolocator.checkPermission();
       if (permissao == LocationPermission.denied) {
         permissao = await Geolocator.requestPermission();
@@ -40,7 +37,6 @@ class _MyHomePageState extends State<MyHomePage> {
           return;
         }
       }
-
       if (permissao == LocationPermission.deniedForever) {
         return;
       }
@@ -54,11 +50,13 @@ class _MyHomePageState extends State<MyHomePage> {
         _adicionarMarcador(localizacaoAtual);
       });
 
-      mapController?.animateCamera(
-        CameraUpdate.newLatLng(
-          LatLng(localizacaoAtual.latitude, localizacaoAtual.longitude),
-        ),
-      );
+      if (mapController != null) {
+        mapController!.animateCamera(
+          CameraUpdate.newLatLng(
+            LatLng(localizacaoAtual.latitude, localizacaoAtual.longitude),
+          ),
+        );
+      }
     } catch (e) {
       print('Erro ao obter localização: $e');
     }
@@ -72,75 +70,43 @@ class _MyHomePageState extends State<MyHomePage> {
         title: 'Localização Atual',
         snippet: 'Sua localização atual',
       ),
-      onTap: () {
-        print('Clicou no marcador da localização atual');
-      },
     );
 
     setState(() {
-      _marcadores.add(marcador); // Adiciona o marcador ao conjunto
+      _marcadores.add(marcador);
     });
   }
 
-  Future<void> _buscarContatos() async {
-    try {
-      QuerySnapshot querySnapshot = await _firestore.collection('contatos').get(); //retorna todos os documentos da coleção contatos
-      List<Map<String, dynamic>> contatos = [];
-
-      for (var doc in querySnapshot.docs) { // Percorre todos os documentos armazenados
-        contatos.add({
-         'nome': doc['nome'],
-        'lat': (doc['latitude'] is double) ? doc['latitude'] : double.parse(doc['latitude'].toString()),
-        'lng': (doc['longitude'] is double) ? doc['longitude'] : double.parse(doc['longitude'].toString()),
-        });
-        print('Documento encontrado: ${doc.data()}'); // Verifique se os dados existem
-      }
-      print(contatos);
-
-      setState(() {
-        _contatos = contatos;
-      });
-      
-      _adicionarMarcadoresContatos(); 
-      
-    } catch (e) {
-      print('Erro ao buscar contatos: $e');
-    }
+  void _adicionarMarcadorLoja(String nome, double lat, double lng, String endereco, String telefone, String horario) {
+    final marcador = Marker(
+      markerId: MarkerId(nome),
+      position: LatLng(lat, lng),
+      infoWindow: InfoWindow(
+        title: nome,
+        snippet: 'Clique para mais detalhes',
+      ),
+      onTap: () {
+        _mostrarDetalhesLoja(nome, endereco, telefone, horario);
+      },
+    );
+    setState(() {
+      _marcadores.add(marcador);
+    });
   }
 
-  void _adicionarMarcadoresContatos() {
-    for (var contato in _contatos) {
-      final marcador = Marker(
-        markerId: MarkerId(contato['nome']),
-        position: LatLng(contato['lat'], contato['lng']),
-        infoWindow: InfoWindow(
-          title: contato['nome'],
-          snippet: 'Clique para ver detalhes',
-        ),
-        onTap: () {
-          print('Marcador clicado: ${contato['nome']}');
-          _mostrarDetalhesContato(contato);
-        },
-      );
-
-      setState(() {
-        _marcadores.add(marcador); // Adiciona o marcador ao conjunto
-      });
-    }
-  }
-
-  void _mostrarDetalhesContato(Map<String, dynamic> contato) {
+  void _mostrarDetalhesLoja(String nome, String endereco, String telefone, String horario) {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(contato['nome']),
+          title: Text(nome),
           content: Column(
-            mainAxisSize: MainAxisSize.min, //apenas o espaço necessário da tela
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Latitude: ${contato['lat']}'),
-              Text('Longitude: ${contato['lng']}'),
+              Text('Endereço: $endereco'),
+              Text('Telefone: $telefone'),
+              Text('Horário: $horario'),
             ],
           ),
           actions: [
@@ -152,6 +118,29 @@ class _MyHomePageState extends State<MyHomePage> {
         );
       },
     );
+  }
+
+  Future<void> _buscarContatos() async {
+    try {
+      QuerySnapshot snapshot = await _firestore.collection('contatos').get();
+      List<Map<String, dynamic>> contatos = snapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+
+      setState(() {
+        _contatos = contatos;
+        for (var contato in contatos) {
+          _adicionarMarcadorLoja(
+            contato['nome'],
+            contato['lat'],
+            contato['lng'],
+            contato['endereco'] ?? 'Endereço desconhecido',
+            contato['telefone'] ?? 'Telefone não informado',
+            contato['horario'] ?? 'Horário desconhecido',
+          );
+        }
+      });
+    } catch (e) {
+      print('Erro ao buscar contatos: $e');
+    }
   }
 
   void _onMapCreated(GoogleMapController controller) {
@@ -172,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
           target: _center,
           zoom: 15.0,
         ),
-        markers: _marcadores, // Exibe os marcadores no mapa
+        markers: _marcadores,
       ),
     );
   }

@@ -4,7 +4,7 @@
             "outputFile": "com.example.projeto_final_allerfree.app-mergeDebugResources-30:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\samia\\OneDrive\\Documentos\\IFPI_ADS\\2024.2\\Prog Disp Mov\\projeto_final_allerfree\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "C:\\Users\\anaca\\Downloads\\disp_moveis-main-modificado\\disp_moveis-main\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

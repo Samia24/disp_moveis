@@ -4,7 +4,7 @@
             "outputFile": "com.example.projeto_final_allerfree.app-mergeDebugResources-30:/values-de/values-de.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\samia\\.gradle\\caches\\transforms-3\\f02f3cca9170ce7f73792140510cdd35\\transformed\\jetified-play-services-base-18.3.0\\res\\values-de\\values.xml",
+                    "source": "C:\\Users\\anaca\\.gradle\\caches\\transforms-3\\0bd433b9660a07d88dd3b2b440365e1f\\transformed\\jetified-play-services-base-18.3.0\\res\\values-de\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\samia\\.gradle\\caches\\transforms-3\\bf6e19e94f397b7f6aca85702ae88592\\transformed\\jetified-play-services-basement-18.3.0\\res\\values-de\\values.xml",
+                    "source": "C:\\Users\\anaca\\.gradle\\caches\\transforms-3\\084a61b6b382ea016da8d77208bfebf4\\transformed\\jetified-play-services-basement-18.3.0\\res\\values-de\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\samia\\.gradle\\caches\\transforms-3\\b2884dbf4ee3398b2907745768baeed2\\transformed\\core-1.13.1\\res\\values-de\\values-de.xml",
+                    "source": "C:\\Users\\anaca\\.gradle\\caches\\transforms-3\\56171c67d3b3b7353fd1934980ff2166\\transformed\\core-1.13.1\\res\\values-de\\values-de.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
