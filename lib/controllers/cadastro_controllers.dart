@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import '../model/banco.dart';
+import 'package:projeto_final_allerfree/model/banco.dart';
 
 class CadastroController {
   final TextEditingController nomeController = TextEditingController();
-  final TextEditingController cpfController = TextEditingController();
-  final TextEditingController cnpjController = TextEditingController();
+  final TextEditingController documentoController = TextEditingController();
   final TextEditingController telefoneController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController senhaController = TextEditingController();
@@ -21,8 +20,7 @@ class CadastroController {
 
   Future<void> cadastrarUsuario(BuildContext context) async {
     String nome = nomeController.text;
-    String cpf = nomeController.text;
-    String cnpj = nomeController.text;
+    String documento = documentoController.text;
     String telefone = telefoneController.text;
     String email = emailController.text;
     String senha = senhaController.text;
@@ -36,8 +34,7 @@ class CadastroController {
     String longitude = longitudeController.text;
 
     if (nome.isNotEmpty &&
-        cpf.isNotEmpty &&
-        cnpj.isNotEmpty &&
+        documento.isNotEmpty &&
         telefone.isNotEmpty &&
         email.isNotEmpty &&
         senha.isNotEmpty &&
@@ -52,8 +49,7 @@ class CadastroController {
       try {
         await _banco.salvarContato(
             nome,
-            cpf,
-            cnpj,
+            documento,
             telefone,
             email,
             senha,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_final_allerfree/controllers/login_controllers.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -8,10 +9,16 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final LoginController _controller = LoginController();
+
+
   bool lembrarMe = true;
 
-  void _login() {
-    Navigator.pushNamed(context, '/home');
+  void _login() async {
+    bool loginSucedido = await _controller.fazerLogin(context);
+    if (loginSucedido) {
+      Navigator.pushNamed(context, '/mapas');
+    }                
   }
 
   void _cadastrar() {
@@ -61,6 +68,7 @@ class _LoginState extends State<Login> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: TextField(
+        controller: _controller.emailController,
         decoration: _inputDecoration("E-mail", Icons.person),
       ),
     );
@@ -71,6 +79,7 @@ class _LoginState extends State<Login> {
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: TextField(
         obscureText: true,
+        controller: _controller.senhaController,
         decoration: _inputDecoration("Senha", Icons.lock),
       ),
     );

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">1022499298930</string>
+    <string name="google_api_key" translatable="false">AIzaSyBMl4FDxLJ7rZPdotz3LIuQwzdu8E7R7As</string>
+    <string name="google_app_id" translatable="false">1:1022499298930:android:a260c97c4360be1511eceb</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBMl4FDxLJ7rZPdotz3LIuQwzdu8E7R7As</string>
+    <string name="google_storage_bucket" translatable="false">projeto-allerfree.firebasestorage.app</string>
+    <string name="project_id" translatable="false">projeto-allerfree</string>
+    <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        
+        <item name="android:windowBackground">@drawable/launch_background</item>
+    </style>
+    <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowBackground">?android:colorBackground</item>
+    </style>
+</resources>
