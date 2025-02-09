@@ -184,104 +184,56 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
   }
-void _mostrarDetalhesLoja(String nome, String endereco, String telefone, String horario) {
-  showDialog(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        title: Text(nome),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Endereço: $endereco'),
-            Text('Telefone: $telefone'),
-            Text('Horário: $horario'),
-          
-          ],
-        ),
-        actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  void _mostrarDetalhesLoja(String nome, String endereco, String telefone, String horario) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(nome),
+          content: Column(
+            mainAxisSize: MainAxisSize.min, //apenas o espaço necessário da tela
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               ElevatedButton(
-                 onPressed: () {
-                _navegar_para_tela_produtos_da_loja(
-                  context,
-                  nome,
-                  endereco,
-                  telefone,
-                  horario,
-                 [
-  {
-    'nome': 'Suco de Laranja Natural',
-    'preco': 8.50,
-    'imagem': 'https://i.pinimg.com/originals/b8/82/bf/b882bfe44a972cfbb4006260ccc215c5.jpg'
-  },
-  {
-    'nome': 'Mel Orgânico',
-    'preco': 15.00,
-    'imagem': 'https://www.melwenzel.com/wp-content/uploads/2019/09/MEL-ORGANICO-560g.jpg'
-  },
-  {
-    'nome': 'Chá Verde Premium',
-    'preco': 22.90,
-    'imagem': 'https://th.bing.com/th?id=OPHS.PkfABtm6kuixHA474C474&w=248&h=248&o=5&pid=21.1'
-  },
-  {
-    'nome': 'Creme de Amendoim',
-    'preco': 18.30,
-    'imagem': 'https://estarbem.vtexassets.com/arquivos/ids/155741/597161.png?v=637962539130270000'
-  },
-  {
-    'nome': 'Semente de Chia',
-    'preco': 10.99,
-    'imagem': 'https://fthmb.tqn.com/c3DSP60ElP5YcKfx9IaR6jjjjp4=/5175x3450/filters:fill(auto,1)/whole-chia-seeds-98210131-582caae45f9b58d5b1ff4d4b.jpg'
-  },
-  {
-    'nome': 'Leite de Amêndoa',
-    'preco': 12.40,
-    'imagem': 'https://th.bing.com/th/id/OIP.quGJkdSBdON69CHktMct1QHaGS?rs=1&pid=ImgDetMain'
-  },
-  {
-    'nome': 'Mix de Frutas Secas',
-    'preco': 20.00,
-    'imagem': 'https://http2.mlstatic.com/D_NQ_NP_934782-MLB52482820691_112022-O.webp'
-  },
-  {
-    'nome': 'Café Orgânico',
-    'preco': 25.50,
-    'imagem': 'https://th.bing.com/th/id/OIP.qrAX8P8Sh1AvhQ7ryNLrOgHaD3?rs=1&pid=ImgDetMain'
-  },
-  {
-    'nome': 'Pasta de Abacate',
-    'preco': 9.99,
-    'imagem': 'https://www.shefa.com.br/wp-content/uploads/2021/10/card2-1-e1635276264386.png'
-  },
-  {
-    'nome': 'Cereal Integral',
-    'preco': 6.99,
-    'imagem': 'https://th.bing.com/th/id/OIP.1A2_A0_OZLs5j6zsBv8PEgHaJs?rs=1&pid=ImgDetMain'
-  }
-]
-
-                );
-              },
-              child: Text("Ver produtos"),
-            ) 
-              ,
-              Spacer(),
-              ElevatedButton( // Botão "OK" substituído por ElevatedButton
-                onPressed: () => Navigator.pop(context),
-                child: Text('Fechar'),
-              ),
+              Text('Endereço: $endereco'),
+              Text('Telefone: $telefone'),
+              Text('Horário: $horario'),
+              ElevatedButton(onPressed:()=>{
+                  _navegar_para_tela_produtos_da_loja(context, nome, endereco, telefone, horario, 
+                  
+                   [
+        {
+          'nome': 'Farinha de Amêndoa',
+          'preco': 25.99,
+          'imagem': 'https://via.placeholder.com/150'
+        },
+        {
+          'nome': 'Óleo de Coco',
+          'preco': 18.50,
+          'imagem': 'https://via.placeholder.com/150'
+        },
+        {
+          'nome': 'Granola Natural',
+          'preco': 12.75,
+          'imagem': 'https://via.placeholder.com/150'
+        },
+      ],
+                  
+                  
+                  )
+              } , child: Text("ver produtos"   ))
             ],
           ),
-        ],
-      );
-    },
-  );
-}
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('Fechar'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }

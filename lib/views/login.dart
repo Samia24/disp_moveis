@@ -25,6 +25,10 @@ class _LoginState extends State<Login> {
     Navigator.pushNamed(context, '/cadastro');
   }
 
+  void _esqueceu_senha(){
+     Navigator.pushNamed(context, '/esqueceu_senha');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,7 +114,7 @@ class _LoginState extends State<Login> {
             ],
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: _esqueceu_senha,
             child: const Text("Esqueceu a senha?",
                 style: TextStyle(color: Colors.red, fontSize: 10, decoration: TextDecoration.underline)),
           ),

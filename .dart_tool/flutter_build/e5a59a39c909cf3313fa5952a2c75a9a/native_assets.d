@@ -1,1 +1,0 @@
- C:\\Users\\anaca\\Downloads\\disp_moveis-main-modificado\\disp_moveis-main\\.dart_tool\\flutter_build\\e5a59a39c909cf3313fa5952a2c75a9a\\native_assets.yaml: 
