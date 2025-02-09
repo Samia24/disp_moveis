@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'views/login.dart';
 import 'views/cadastro_usuario.dart';
 import 'views/mapas.dart';
+//import 'views/stores_detals.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 

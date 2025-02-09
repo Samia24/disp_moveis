@@ -183,11 +183,31 @@ class _MyHomePageState extends State<MyHomePage> {
           content: Column(
             mainAxisSize: MainAxisSize.min, //apenas o espaço necessário da tela
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Endereço: $endereco'),
-              Text('Telefone: $telefone'),
-              Text('Horário: $horario'),
-            ],
+            children:[
+              Row(
+                children: [
+                  Icon(Icons.location_on, color: Colors.red),
+                  SizedBox(width: 8),
+                  Expanded(child: Text('Endereço: $endereco')),
+                ],
+              ),
+              SizedBox(height: 8),
+              Row(
+                children: [
+                  Icon(Icons.phone, color: Colors.red),
+                  SizedBox(width: 8),
+                  Expanded(child: Text('Telefone: $telefone')),
+                ],
+              ),
+              SizedBox(height: 8),
+              Row(
+                children: [
+                  Icon(Icons.access_time, color: Colors.red),
+                  SizedBox(width: 8),
+                  Expanded(child: Text('Horário: $horario')),
+                ],
+              ),
+            ]
           ),
           actions: [
             TextButton(
