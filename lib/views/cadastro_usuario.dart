@@ -122,11 +122,15 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
         padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20),
         child: Column(
           children: [
-            TextFormField(
-              controller: _controller.nomeController,
-              decoration: _inputDecoration(
-                  "Nome completo", "Informe seu nome completo"),
-            ),
+            usuarioAtivado
+                ? TextFormField(
+                    controller: _controller.nomeController,
+                    decoration: _inputDecoration("Nome", "Informe seu nome completo"),
+                  )
+                : TextFormField(
+                    controller: _controller.nomeController,
+                    decoration: _inputDecoration("Razão Social/Nome fantasia", "Nome da sua loja"),
+                  ),
             const SizedBox(height: 10),
             usuarioAtivado
                 ? TextFormField(
@@ -164,10 +168,15 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
         padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20),
         child: Column(
           children: [
-            TextFormField(
-              controller: _controller.enderecoController,
-              decoration: _inputDecoration("Endereço", "Informe seu endereço"),
-            ),
+            usuarioAtivado
+                ? TextFormField(
+                    controller: _controller.enderecoController,
+                    decoration: _inputDecoration("Endereço", "Informe seu endereço"),
+                  )
+                : TextFormField(
+                    controller: _controller.enderecoController,
+                    decoration: _inputDecoration("Endereço", "Informe o endereço da sua loja"),
+                  ),
             const SizedBox(height: 10),
             TextFormField(
               controller: _controller.bairroController,

@@ -24,8 +24,9 @@ class _StoreDetailsScreenState extends State<StoreDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(246, 240, 253, 249),
       appBar: AppBar(
-        title: Text(widget.nome),
+        title: Text(widget.nome, style: TextStyle(color: const Color.fromARGB(246, 240, 253, 249))),
         backgroundColor: Colors.red,
       ),
       body: Padding(
@@ -48,7 +49,7 @@ class _StoreDetailsScreenState extends State<StoreDetailsScreen> {
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
               child: const Text(
                 'Ver Produtos',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Color.fromARGB(246, 240, 253, 249),),
               ),
             ),
           ],
@@ -112,7 +113,7 @@ class ProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Produtos'),
+        title: const Text('Produtos', style: TextStyle(color:  Color.fromARGB(246, 240, 253, 249)),),
         backgroundColor: Colors.red,
       ),
       body: produtos.isEmpty
@@ -122,6 +123,7 @@ class ProductPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 final produto = produtos[index];
                 return Card(
+                  color: const Color.fromARGB(246, 240, 253, 249),
                   elevation: 3,
                   margin: const EdgeInsets.symmetric(vertical: 8),
                   child: ListTile(
@@ -134,7 +136,7 @@ class ProductPage extends StatelessWidget {
                           const Icon(Icons.image_not_supported),
                     ),
                     title: Text(produto['nome']),
-                    subtitle: Text('Preço: R\$ ${produto['preco'].toStringAsFixed(2)}'),
+                    subtitle: Text('R\$ ${produto['preco'].toStringAsFixed(2)}'),
                   ),
                 );
               },

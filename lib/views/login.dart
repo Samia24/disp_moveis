@@ -13,6 +13,7 @@ class _LoginState extends State<Login> {
 
 
   bool lembrarMe = true;
+  bool isUsuario = true;
 
   void _login() async {
     bool loginSucedido = await _controller.fazerLogin(context);
@@ -41,7 +42,7 @@ class _LoginState extends State<Login> {
             children: [
               const SizedBox(height: 40),
               Image.asset('assets/images/logo.png', height: 80),
-              _iconePerfil(),
+              _iconeBotaoUsuarioLoja(),
               const SizedBox(height: 20),
               _email(),
               const SizedBox(height: 10),
@@ -52,6 +53,46 @@ class _LoginState extends State<Login> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _iconeBotaoUsuarioLoja() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _botaoAlternar("Usuário", Icons.person, isUsuario, () {
+            setState(() {
+              isUsuario = true;
+            });
+          }),
+          const SizedBox(width: 20),
+          _botaoAlternar("Loja", Icons.store, !isUsuario, () {
+            setState(() {
+              isUsuario = false;
+            });
+          }),
+        ],
+      ),
+    );
+  }
+
+  Widget _botaoAlternar(String titulo, IconData icone, bool selecionado, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Icon(icone, color: selecionado ? Colors.red : Colors.grey, size: 40),
+          Text(
+            titulo,
+            style: TextStyle(
+              color: selecionado ? Colors.red : Colors.grey,
+              fontWeight: selecionado ? FontWeight.bold : FontWeight.normal,
+            ),
+          ),
+        ],
       ),
     );
   }
