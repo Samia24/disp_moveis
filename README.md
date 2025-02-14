@@ -1,16 +1,21 @@
-# projeto_final_allerfree
+# Aller Free
 
-A new Flutter project.
+É um aplicativo desenvolvido em Flutter semelhante ao iFood, mas focado em alimentos com restrições. Ele permite que usuários encontrem e comprem alimentos adequados para suas necessidades específicas.
 
-## Getting Started
+## Tecnologias utilizadas
 
-This project is a starting point for a Flutter application.
+- Flutter: Framework para desenvolvimento de aplicativos multiplataforma.
 
-A few resources to get you started if this is your first Flutter project:
+- Dart: Linguagem de programação utilizada no Flutter.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Firebase: Banco de dados para armazenamento de informações.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Funcionalidades
+
+Cadastro e Login: Permite que os usuários criem uma conta e realizem login.
+
+Busca de Alimentos: Usuários podem encontrar produtos conforme suas restrições alimentares.
+
+Google Maps: Integração com o google maps para mostrar as lojas cadastradas no mapas.
+
+Interface Intuitiva: Design responsivo e amigável ao usuário.
